@@ -1,4 +1,3 @@
-
 const louva = {
   nome:"Louva-a-deus",
   mesesVida: 12,
@@ -19,6 +18,10 @@ const besouro = {
   carnivoro:false,
   habitat:["Brasil", "Guatemala", "Honduras"]
 }
+
+const insetos = []
+
+insetos.push(louva, formiga, besouro)
 
 let mediaVida = Number((louva.mesesVida+formiga.mesesVida+besouro.mesesVida)/3)
 
@@ -82,17 +85,27 @@ console.log(objetoStrig(louva, formiga[0]))
 
 //Adicionando as informações dos objetos ao HTML utilizando DOM
 
-let elemento = document.createElement('li')
-let texto = document.createTextNode("berinjela")
-elemento.appendChild(texto)
-console.log(elemento)
+const container = document.getElementsByClassName("container")
+console.log(container)
 
-let lista = document.getElementById("formiga")
-console.log(lista)
-lista.insertAdjacentElement("beforebegin", elemento)
+function renderizar(array) {
+  let listagem = []
+  for(i in array){
+    listagem += 
+    `<article class="louva">
+       <ul id="louva">
+         <li id="nomeLouva">Nome:<a href="https://pt.wikipedia.org/wiki/Louva-a-deus">${array[i].nome}</a></li>
+         <li>Tempo de vida estimado: ${array[i].mesesVida}</li>
+         <li>Carnivoro? ${array[i].carnivoro}</li>
+         <li>Habitat: ${array[i].habitat}</li>
+       </ul>
+     </article>`
+  }
+  return listagem
+}
 
+console.log(renderizar(insetos))
 
-//aqui tentei adcionar um texto qualquer ("Berinjela") na Li que criei (na variavel "elemento") o objetivo é fazer com que esse texto entre e depois de obter sucesso trabalhar com os objetos. 
-
-//observe que no console.log da linha 88 é impresso a nossa Li já com o texto, o que indica que a lógica da linha 85 à 87 está certa. O problema é na linha 90, que ao dar console.log imprime "null", o que indica que não está conseguindo encontrar o elemento pelo Id.
+const texto = "<p>blablabla</p>"
+container.innerHTML += texto
 
