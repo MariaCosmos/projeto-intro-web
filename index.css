@@ -4,10 +4,20 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+body{
+  background-color: #F5F3CC;
+}
+
 .pagina{
+  width: 98vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #F5F3CC;
+  justify-content: space-between;
+}
+
+div.pagina{
+  height: 0;
 }
 
 header{
@@ -19,9 +29,10 @@ header{
   color: #F5F3CC;
   border: 4px solid #F5F3CC;
   border-radius: 8px;
+  width: 98vw;
 }
 
-.botão{
+.inputButton{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,6 +41,7 @@ header{
   border: 4px solid #F5F3CC;
   border-radius: 8px;
   border-top: none;
+  width: 98vw;
 }
 
 input{
@@ -49,15 +61,18 @@ button{
 
 .container{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   justify-items: center;
   margin-top: 5vh;
+  row-gap: 20px;
+  padding-bottom: 10vh;
 }
 
 .louva, .formiga, .besouro{
+  background-color: #A1674A;
+  color: #F5F3CC;
   display: flex;
-  border: 3px solid #A1674A;
   padding: 4px;
   border-radius: 3px;
   padding-left: 20px;
@@ -76,6 +91,10 @@ footer{
   color: #F5F3CC;
   align-items: center;
   padding: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 98vw;
+  
 }
 
 @media screen and (max-device-width: 800px){

@@ -1,76 +1,61 @@
 const louva = {
-  nome:"Louva-a-deus",
+  grupo:"Louva-a-deus",
+  nome:"Louva-a-deus-Chinês",
   mesesVida: 12,
   carnivoro: true,
-  habitat: ["Angola", "Brasil", "Taiwan"]
+  paises: [" China ", " Taiwan "],
+  link:"https://pt.wikipedia.org/wiki/Louva-a-deus-chin%C3%AAs"
 }
 
+const marimbondo = {
+  grupo:"Marimbondo",
+  nome:"cabatatu",
+  mesesVida: 2,
+  carnivoro: false,
+  paises:[" Alemanha ", " Japão ", " Paraguai "],
+  link:"https://pt.wikipedia.org/wiki/Synoeca_cyanea"
+}
+
+
 const formiga = {
+  grupo:"Formiga",
   nome:"Formiga-de-fogo",
   mesesVida: 24,
   carnivoro: false,
-  habitat:["Brasil", "Argentina", "Paraguai"]
+  paises:[" Brasil ", " Argentina ", " Paraguai "],
+  link:"https://pt.wikipedia.org/wiki/Formiga-de-fogo"
 }
 
+const formiga2 = {
+  grupo:"formiga",
+  nome:"Formiga-cabo-verde",
+  mesesVida: 24,
+  carnivoro: false,
+  paises:[" Brasil ", " China ", " Paraguai "],
+  link:"https://pt.wikipedia.org/wiki/Formiga-cabo-verde"
+} 
+
 const besouro = {
+  grupo:"Besouro",
   nome:"Besouro-hércules",
   mesesVida:5,
   carnivoro:false,
-  habitat:["Brasil", "Guatemala", "Honduras"]
+  paises:[" Brasil ", " Guatemala ", " Honduras "],
+  link:"https://pt.wikipedia.org/wiki/Besouro-h%C3%A9rcules"
+}
+
+const besouro2 = {
+  grupo:"Besouro",
+  nome:"Cerambicídeo-gigante",
+  mesesVida: 10,
+  carnivoro: false,
+  paises:[" Brasil ", " Canadá ", " Angola "],
+  link:"https://pt.wikipedia.org/wiki/Titanus_giganteus"
 }
 
 const insetos = []
 
-insetos.push(louva, formiga, besouro)
-
-let mediaVida = Number((louva.mesesVida+formiga.mesesVida+besouro.mesesVida)/3)
-
-console.log("a média do tempo de vida dos 3 incetos é:", mediaVida)
-
-const todosCarnivoros = louva.carnivoro && formiga.carnivoro && besouro.carnivoro
-
-console.log("Todos os incetos são carnivoros:", todosCarnivoros)
-
-for(i in louva){
-  console.log(`${i}: ${louva[i]}`)
-}
- for(j in formiga){
-  console.log(`${j}: ${formiga[j]}`)
-}
-
- for(m in besouro){
-  console.log(`${m}: ${besouro[m]}`)
- }
-
-const incetos = []
-
-if(louva.carnivoro){
-  incetos.push(louva)
-}else{
-  //alert(`item ${louva.nome} não adicionado`)
-}
-if(formiga.carnivoro){
-  incetos.push(formiga)
-}else{
-  //alert(`item ${formiga.nome} não adicionado`)
-}
-if(besouro.carnivoro){
-  incetos.push(besouro)
-}else{
-  //alert(`item ${besouro.nome} não adicionado`)
-}
-
-function relatorio (objeto){
-  const string = [];
-  for(n in objeto){
-    string.push(`${i}: ${objeto[i]}`)
-  }
-  return string
-}
-
-console.log(relatorio(louva))
-console.log(relatorio(formiga))
-console.log(relatorio(besouro))
+insetos.push(louva, formiga, besouro, formiga2, besouro2, marimbondo)
 
 function objetoStrig (array,string){
   const objetoreturn = {}
@@ -85,27 +70,39 @@ console.log(objetoStrig(louva, formiga[0]))
 
 //Adicionando as informações dos objetos ao HTML utilizando DOM
 
-const container = document.getElementsByClassName("container")
+const container = document.querySelector(".container")
 console.log(container)
 
-function renderizar(array) {
-  let listagem = []
+function renderizarCards(array) {
+  let listagem = [""]
   for(i in array){
     listagem += 
     `<article class="louva">
        <ul id="louva">
-         <li id="nomeLouva">Nome:<a href="https://pt.wikipedia.org/wiki/Louva-a-deus">${array[i].nome}</a></li>
+         <li>Grupo: ${array[i].grupo}</li>
+         <li>Nome: <a href="${array[i].link}" target="_blank">${array[i].nome}</a></li>
          <li>Tempo de vida estimado: ${array[i].mesesVida}</li>
          <li>Carnivoro? ${array[i].carnivoro}</li>
-         <li>Habitat: ${array[i].habitat}</li>
+         <li>Países: ${array[i].paises}</li>
        </ul>
      </article>`
   }
-  return listagem
+  return container.innerHTML=listagem
 }
+console.log(renderizarCards(insetos))
 
-console.log(renderizar(insetos))
+const pesquisa = document.querySelector(".pesquisa")
+console.log(pesquisa.value)
 
-const texto = "<p>blablabla</p>"
-container.innerHTML += texto
 
+function pesquisando(){
+  const array = []
+  for(i in insetos){
+    if(pesquisa.value.toUpperCase() === insetos[i].grupo.toUpperCase()){
+      array.push(insetos[i])
+    }else if(pesquisa.value.toUpperCase() === ""){
+      renderizarCards(insetos)
+    }
+  }
+  return renderizarCards(array)
+}
